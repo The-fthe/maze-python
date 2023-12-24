@@ -21,10 +21,10 @@ class Line:
 
 
 class Window:
-    def __init__(self, width: float, height: float):
+    def __init__(self, width: float, height: float, bg_color="grey"):
         self.__root = Tk()
         self.__root.title = "Maze Solver"
-        self.canvas = Canvas(self.__root, bg="grey",
+        self.canvas = Canvas(self.__root, bg=bg_color,
                              height=height, width=width)
         self.canvas.pack(fill=BOTH, expand=1)
         self.__running = False
@@ -41,7 +41,7 @@ class Window:
         print("window closed..")
 
     def draw_line(self, line: Line, fill_color: str):
-        line.draw(self.canvas, "black")
+        line.draw(self.canvas, fill_color)
 
     def close(self):
         self.__running = False

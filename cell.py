@@ -7,19 +7,22 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_down_wall = True
-        self.is_visited = False
+        self.is_visited = True
+        self.visited = False
         self._x1 = 0
         self._y1 = 0
         self._x2 = 0
         self._y2 = 0
         self._win = win
 
-    def draw(self, p1: Point, p2: Point):
-        fill_color = "black"
+    def draw(self, p1: Point, p2: Point, fill_color="black"):
+        bg_color = "grey"
         self._x1 = p1.x
         self._y1 = p1.y
         self._x2 = p2.x
         self._y2 = p2.y
+        if self._win is None:
+            return
         # left
         left_l = Line(Point(p1.x, p1.y), Point(p1.x, p2.y))
         # right
@@ -32,14 +35,26 @@ class Cell:
         # draw line
         if self.has_left_wall:
             self._win.draw_line(left_l, fill_color)
+        else:
+            self._win.draw_line(left_l, bg_color)
+
         if self.has_right_wall:
             self._win.draw_line(right_l, fill_color)
+        else:
+            self._win.draw_line(right_l, bg_color)
+
         if self.has_top_wall:
             self._win.draw_line(top_l, fill_color)
+        else:
+            self._win.draw_line(top_l, bg_color)
+
         if self.has_down_wall:
             self._win.draw_line(down_l, fill_color)
+        else:
+            self._win.draw_line(down_l, bg_color)
 
     def draw_move(self, to_cell, undo=False):
+        print("draw move is called")
         if self._win is None:
             return
         x_mid = (self._x1 + self._x2) / 2
