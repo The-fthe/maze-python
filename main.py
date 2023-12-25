@@ -1,5 +1,4 @@
-from graphic import Window, Point
-from cell import Cell
+from graphic import Window
 from maze import Maze
 
 
@@ -13,8 +12,8 @@ def main():
     cell_size_y = (screen_y - 2 * offset) / num_rows
     win = Window(screen_x, screen_y)
 
-    maze = Maze(offset, offset, num_rows, num_cols,
-                cell_size_x, cell_size_y, win)
+    Maze(offset, offset, num_rows, num_cols,
+         cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
 

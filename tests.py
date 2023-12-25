@@ -9,11 +9,11 @@ class Tests(unittest.TestCase):
         num_rows = 10
         m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
         self.assertEqual(
-            len(m1.cells),
+            len(m1._cells),
             num_cols,
         )
         self.assertEqual(
-            len(m1.cells[0]),
+            len(m1._cells[0]),
             num_rows,
         )
 
@@ -21,16 +21,34 @@ class Tests(unittest.TestCase):
         num_cols = 12
         num_rows = 10
         m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
-        last_cell = m1.cells[m1.num_cols-1][m1.num_rows-1]
+        last_cell = m1._cells[m1._num_cols-1][m1._num_rows-1]
         self.assertEqual(isinstance(last_cell, Cell), True)
         self.assertEqual(
             last_cell._x1,
-            m1.x1 + (m1.num_cols-1) * m1.cell_size_x
+            m1._x1 + (m1._num_cols-1) * m1._cell_size_x
         )
         self.assertEqual(
             last_cell._y1,
-            m1.y1 + (m1.num_rows-1) * m1.cell_size_y
+            m1._y1 + (m1._num_rows-1) * m1._cell_size_y
         )
+
+    def test_cells_reset_visited_to_true(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1._reset_cell_visited(True)
+        for cols in m1._cells:
+            for row in cols:
+                self.assertEqual(row.visited, True)
+
+    def test_cells_reset_visited_to_false(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1._reset_cell_visited(False)
+        for cols in m1._cells:
+            for row in cols:
+                self.assertEqual(row.visited, False)
 
 
 if __name__ == "__main__":

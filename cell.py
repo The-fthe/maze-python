@@ -5,7 +5,7 @@ class Cell:
     def __init__(self, win: Window):
         self.has_left_wall = True
         self.has_right_wall = True
-        self.has_top_wall = True
+        self.has_up_wall = True
         self.has_down_wall = True
         self.is_visited = True
         self.visited = False
@@ -43,7 +43,7 @@ class Cell:
         else:
             self._win.draw_line(right_l, bg_color)
 
-        if self.has_top_wall:
+        if self.has_up_wall:
             self._win.draw_line(top_l, fill_color)
         else:
             self._win.draw_line(top_l, bg_color)
