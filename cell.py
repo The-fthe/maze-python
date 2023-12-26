@@ -54,7 +54,6 @@ class Cell:
             self._win.draw_line(down_l, bg_color)
 
     def draw_move(self, to_cell, undo=False):
-        print("draw move is called")
         if self._win is None:
             return
         x_mid = (self._x1 + self._x2) / 2
@@ -63,9 +62,9 @@ class Cell:
         to_x_mid = (to_cell._x1 + to_cell._x2) / 2
         to_y_mid = (to_cell._y1 + to_cell._y2) / 2
 
-        fill_color = "red"
+        fill_color = "green"
         if undo:
-            fill_color = "gray"
+            fill_color = "red"
 
         # moving left
         if self._x1 > to_cell._x1:
